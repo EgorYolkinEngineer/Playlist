@@ -12,6 +12,8 @@ data/*
 
 *.pyc
 
+*.db
+
 # C extensions
 *.so
 
