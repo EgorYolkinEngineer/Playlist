@@ -1,11 +1,16 @@
 from aiogram.types import BotCommand
 
 from src.handlers.messages import messages_router 
+from src.handlers.inline_query import inline_router
+from src.handlers.callback_query import callback_query_router
+
 from core.conf.config import bot, dp
 
 import asyncio
 
-dp.include_router(messages_router)
+dp.include_routers(messages_router,
+                   callback_query_router,
+                   inline_router)
 
 
 async def set_default_commands(dp):

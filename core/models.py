@@ -23,6 +23,8 @@ class Playlist(Base):
     __tablename__ = 'playlists'
 
     pk = Column(Integer, primary_key=True, autoincrement=True)
+    creator_telegram_id = Column(Integer)
+    
     preview_file_id = Column(String)
     name = Column(String)
     description = Column(String)

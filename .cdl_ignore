@@ -1,0 +1,19 @@
+
+# .cdl_ignore for python project
+*.md
+*.yaml
+*.ini
+*.sh
+*.png
+*.idx
+*.so
+*.whl
+*.cpthon-311.pyc
+*.pyc
+*.sample
+env/
+venv/
+__pycache__/
+
+.DS_Store/
+.idea/

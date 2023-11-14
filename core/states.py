@@ -6,3 +6,7 @@ class CreatePlaylistStatesGroup(StatesGroup):
     set_description = State()
     set_preview = State()
     
+    
+class PlaylistSongStatesGroup(StatesGroup):
+    select_save_playlist = State()
+    

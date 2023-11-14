@@ -1,3 +1,7 @@
+from sqlalchemy import exc
+
+from core import exceptions
+
 from core.gateways.abstract_gateway import AbstractGateway
 from core.models import User
 
@@ -13,8 +17,12 @@ class UserGateway(AbstractGateway):
         return self.session.query(User).get(pk)
 
     def create(self, user: User):
-        self.session.add(user)
-        self.session.commit()
+        try:
+            self.session.add(user)
+            self.session.commit()
+        except exc.IntegrityError:
+            self.session.rollback()
+            raise exceptions.UserAlreadyExists()
 
     def update(self, pk: int, user: User):
         self.session.query(User).filter(User.pk == pk).update(user)

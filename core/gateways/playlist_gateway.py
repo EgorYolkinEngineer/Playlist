@@ -9,8 +9,17 @@ class PlaylistGateway(AbstractGateway):
                  session: Session):
         self.session = session
 
-    def get(self, id: int) -> Playlist:
-        return self.session.query(Playlist).get(id)
+    def get(self, pk: int) -> Playlist:
+        return self.session.query(Playlist).get(pk)
+    
+    def get_all(self) -> list[Playlist]:
+        return self.session.query(Playlist).all
+    
+    def filter_by(self, **kwargs) -> list[Playlist]:
+        return self.session.query(Playlist).filter_by(**kwargs).all()
+
+    def filter_only(self, filter_expression) -> list[Playlist]:
+        return self.session.query(Playlist).filter(filter_expression).all()
 
     def create(self, playlist: Playlist):
         self.session.add(playlist)
@@ -18,8 +27,8 @@ class PlaylistGateway(AbstractGateway):
 
     def update(self, 
                pk: int, 
-               user: Playlist):
-        self.session.query(Playlist).filter(Playlist.pk == pk).update(user)
+               playlist: Playlist):
+        self.session.query(Playlist).filter(Playlist.pk == pk).update(playlist)
         self.session.commit()
 
     def delete(self, pk):
